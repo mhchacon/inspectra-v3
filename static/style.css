@@ -1,0 +1,222 @@
+/* Estilo para o container principal */
+.container {
+    background: #fff;
+    padding: 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    max-width: 800px;
+    width: 100%;
+    text-align: center;
+    overflow: auto;
+    margin: 20px auto;
+}
+
+/* Estilo para o formulário de upload */
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+label {
+    font-size: 1.1em;
+    font-weight: bold;
+    color: #333;
+}
+
+input[type="file"] {
+    padding: 10px;
+    border: 2px dashed #4A90E2;
+    border-radius: 5px;
+    width: 100%;
+    max-width: 400px;
+    background-color: #f9f9f9;
+    cursor: pointer;
+    transition: border-color 0.3s;
+}
+
+input[type="file"]:hover {
+    border-color: #357ABD;
+}
+
+input[type="submit"] {
+    background: #4A90E2;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+input[type="submit"]:hover {
+    background: #357ABD;
+}
+
+/* Estilo para o relatório de inspeção */
+.report-container {
+    margin-top: 20px;
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+
+.report-container h1 {
+    font-size: 1.8em;
+    color: #4A90E2;
+    margin-bottom: 15px;
+}
+
+.report-container p {
+    font-size: 1.1em;
+    color: #555;
+    margin: 10px 0;
+}
+
+.report-container h2 {
+    font-size: 1.5em;
+    color: #333;
+    margin-top: 20px;
+}
+
+.processed-image {
+    max-width: 100%;
+    margin-top: 15px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo para os botões */
+.back-button {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background: #4CAF50;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background 0.3s;
+}
+
+.back-button:hover {
+    background: #45a049;
+}
+
+/* Estilo para mensagens de erro/sucesso */
+#message {
+    margin-top: 20px;
+    padding: 10px;
+    border-radius: 5px;
+    display: none;
+    color: #fff;
+    font-size: 1em;
+}
+
+#message.success {
+    background-color: #4CAF50;
+}
+
+#message.error {
+    background-color: #f44336;
+}
+
+/* Estilo da barra lateral */
+.sidebar {
+    width: 250px;
+    height: 100vh;
+    background-color: #4A90E2;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar h2 {
+    color: white;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    margin: 15px 0;
+}
+
+.sidebar ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.1em;
+    display: block;
+    padding: 10px;
+    border-radius: 5px;
+    transition: background 0.3s;
+}
+
+.sidebar ul li a:hover {
+    background-color: #357ABD;
+}
+
+/* Ajuste o conteúdo principal para não ficar atrás da barra lateral */
+.container {
+    margin-left: 270px; /* Largura da barra lateral + 20px de margem */
+    padding: 20px;
+}
+
+.dados-coletados {
+    width: 80%;
+    margin: 20px auto;
+}
+
+h2 {
+    background-color: #0066FF;
+    color: white;
+    padding: 10px;
+    border-radius: 8px 8px 0 0;
+    text-align: left;
+}
+
+.styled-table {
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.styled-table th, .styled-table td {
+    padding: 12px;
+    text-align: left;
+}
+
+.styled-table thead {
+    background-color: #f8f9fa;
+}
+
+.styled-table tbody tr:nth-child(odd) {
+    background-color: #f2f2f2;
+}
+
+.styled-table tbody tr:nth-child(even) {
+    background-color: #ffffff;
+}
+
+.aprovado {
+    color: green;
+    font-weight: bold;
+}
+
+.reprovado {
+    color: red;
+    font-weight: bold;
+}

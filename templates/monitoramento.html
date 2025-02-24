@@ -1,0 +1,141 @@
+{% extends "base.html" %}
+
+{% block title %}Monitoramento - INSPECTRA{% endblock %}
+
+{% block content %}
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Inspectra</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="#historico">Histórico</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#envio">Envio de Dados</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container mt-4">
+    <!-- Dados Coletados -->
+    <div class="dados-coletados">
+        <h2>Dados Coletados</h2>
+        <table class="styled-table">
+            <thead>
+                <tr>
+                    <th>ID do Produto</th>
+                    <th>Hora da Inspeção</th>
+                    <th>Status</th>
+                    <th>Peso</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for result in results %}
+                <tr>
+                    <td>{{ result.id }}</td>
+                    <td>{{ result.inspection_time.strftime('%H:%M') }}</td>
+                    <td class="{% if result.damaged_count == 0 %}aprovado{% else %}reprovado{% endif %}">
+                        {% if result.damaged_count == 0 %}
+                            Aprovado
+                        {% else %}
+                            Reprovado
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    
+    
+
+    <!-- Contagem-->
+    <div class="card mb-4">
+        <div class="card-header bg-warning text-dark">Contagem</div>
+        <div class="card-body">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Intactos</th>
+                        <th>Defeituosos</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{ intact_count }}</td>
+                        <td>{{ damaged_count }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Gráfico de Resultados -->
+    <div class="card mb-4">
+        <div class="card-header bg-info text-white">Resumo de Inspeções</div>
+        <div class="card-body text-center">
+            <canvas id="inspectionChart"></canvas>
+        </div>
+    </div>
+
+    <!-- Envio de Dados -->
+    <div class="card mb-4" id="envio">
+        <div class="card-header bg-success text-white">Envio de Dados</div>
+        <div class="card-body">
+            <form>
+                <div class="mb-3">
+                    <label for="fileUpload" class="form-label">Escolha um arquivo:</label>
+                    <input type="file" class="form-control" id="fileUpload" name="fileUpload">
+                </div>
+                <button type="submit" class="btn btn-primary">Enviar</button>
+            </form>
+        </div>
+    </div>
+    
+    <p class="mb-0 text-center">Inspectra © 2025 - Todos os direitos reservados</p>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const ctx = document.getElementById("inspectionChart");
+
+        if (ctx) {
+            new Chart(ctx, {
+                type: "bar",
+                data: {
+                    labels: ["Aprovados", "Reprovados"],
+                    datasets: [{
+                        label: "Quantidade",
+                        data: [
+                            parseInt("{{ intact_count | default(0) }}"), 
+                            parseInt("{{ damaged_count | default(0) }}")
+                        ],
+                        backgroundColor: ["#2E7D32", "#D32F2F"]
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: { display: true },
+                        title: { 
+                            display: true, 
+                            text: "Resultados das Inspeções" 
+                        }
+                    }
+                }
+            });
+        } else {
+            console.error("Elemento #inspectionChart não encontrado.");
+        }
+    });
+</script>
+
+{% endblock %}

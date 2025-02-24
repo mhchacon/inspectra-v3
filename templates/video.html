@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}Webcam Object Detection{% endblock %}
+
+{% block content %}
+    <h1>Face Detection Application</h1>
+    <div id="video-container">
+        <img id="video-feed" src="/video_feed" alt="Video Feed">
+    </div>
+    <button id="toggle-camera">Alternar Câmera</button>
+
+    <script>
+        const toggleCameraButton = document.getElementById('toggle-camera');
+        const videoFeed = document.getElementById('video-feed');
+        let isCameraActive = true;
+
+        toggleCameraButton.addEventListener('click', () => {
+            if (isCameraActive) {
+                videoFeed.src = "/static/sample-video.mp4"; 
+                toggleCameraButton.textContent = "Ativar Câmera";
+            } else {
+                videoFeed.src = "/video_feed";
+                toggleCameraButton.textContent = "Alternar para Vídeo";
+            }
+            isCameraActive = !isCameraActive;
+        });
+    </script>
+{% endblock %}

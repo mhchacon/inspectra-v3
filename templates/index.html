@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}INSPECTRA - Object Detection Application{% endblock %}
+
+{% block content %}
+    <h1>Faça o Upload da Imagem para a Detecção</h1>
+    <form id="upload-form" action="/object-detection/" method="post" enctype="multipart/form-data">
+        <label for="image">Selecione uma Imagem:</label>
+        <input type="file" id="image" name="image" accept="image/*" required>
+        <input type="submit" value="Enviar e Aplicar Detecção">
+    </form>
+
+    <!-- Relatório (exibido apenas após processamento) -->
+    {% if inspection_time %}
+    <div class="report-container">
+        <h1>Relatório de Inspeção</h1>
+        <p><strong>Horário da Inspeção:</strong> {{ inspection_time }}</p>
+        <p><strong>Objetos Intactos:</strong> {{ intact_count }}</p>
+        <p><strong>Objetos Danificados:</strong> {{ damaged_count }}</p>
+        <h2>Imagem Processada:</h2>
+        <img src="data:image/png;base64,{{ image_data }}" alt="Imagem Processada" class="processed-image">
+        <a href="data:image/png;base64,{{ image_data }}" download="imagem_processada.png" class="back-button">
+            Baixar Inspeção
+        </a>
+        <a href="/" class="back-button">Voltar</a>
+    </div>
+    {% endif %}
+
+    <!-- Mensagens de erro/sucesso -->
+    {% if message %}
+    <div id="message" class="{% if is_success %}success{% else %}error{% endif %}">
+        {{ message }}
+    </div>
+    {% endif %}
+{% endblock %}
