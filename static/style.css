@@ -220,3 +220,65 @@ h2 {
     color: red;
     font-weight: bold;
 }
+
+/* Estilo para o contêiner do relatório */
+.report-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+}
+
+/* Estilo para a tabela */
+.styled-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    font-family: Arial, sans-serif;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Estilo para o cabeçalho da tabela */
+.styled-table thead tr {
+    background-color: #4A90E2;
+    color: #ffffff;
+    text-align: left;
+}
+
+/* Estilo para as células do cabeçalho */
+.styled-table th,
+.styled-table td {
+    padding: 12px 15px;
+}
+
+/* Estilo para as linhas da tabela */
+.styled-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+/* Efeito de hover nas linhas */
+.styled-table tbody tr:hover {
+    background-color: #f5f5f5;
+}
+
+/* Estilo para a última linha */
+.styled-table tbody tr:last-of-type {
+    border-bottom: 2px solid #4A90E2;
+}
+
+/* Estilo para o botão Voltar */
+.back-button {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #4A90E2;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.back-button:hover {
+    background-color: #357ABD;
+}

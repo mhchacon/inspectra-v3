@@ -3,30 +3,32 @@
 {% block title %}Resultados das Inspeções{% endblock %}
 
 {% block content %}
-    <h1>Resultados das Inspeções</h1>
-    <table border="1">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Arquivo</th>
-                <th>Intactos</th>
-                <th>Danificados</th>
-                <th>Dia e hora da inspeção</th>
-                <th>Imagem</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for result in results %}
-            <tr>
-                <td>{{ result.id }}</td>
-                <td>{{ result.filename }}</td>
-                <td>{{ result.intact_count }}</td>
-                <td>{{ result.damaged_count }}</td>
-                <td>{{ result.inspection_time.strftime('%d/%m/%Y %H:%M:%S') }}</td>
-                <td><img src="data:image/png;base64,{{ result.image_base64 }}" width="100"></td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-    <a href="/" class="back-button">Voltar</a>
+    <div class="report-container">
+        <h1>Resultados das Inspeções</h1>
+        <table class="styled-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Arquivo</th>
+                    <th>Intactos</th>
+                    <th>Danificados</th>
+                    <th>Dia e hora da inspeção</th>
+                    <th>Imagem</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for result in results %}
+                <tr>
+                    <td>{{ result.id }}</td>
+                    <td>{{ result.filename }}</td>
+                    <td>{{ result.intact_count }}</td>
+                    <td>{{ result.damaged_count }}</td>
+                    <td>{{ result.inspection_time.strftime('%d/%m/%Y %H:%M:%S') }}</td>
+                    <td><img src="data:image/png;base64,{{ result.image_base64 }}" width="100"></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="/" class="back-button">Voltar</a>
+    </div>
 {% endblock %}

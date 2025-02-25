@@ -97,7 +97,7 @@ class InspectionResult(db.Model):
 
 @app.route('/')
 def index():
-    return monitoramento()  
+    return render_template('index.html')
 
 @app.route('/monitoramento')
 def monitoramento():
